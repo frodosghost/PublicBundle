@@ -20,9 +20,40 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('manhattan_public');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('analytics')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('property')
+                            ->defaultValue('')
+                            ->info('Set the Analytics Property')
+                            ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('emails')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->variableNode('from')
+                            ->defaultValue('webmaster@website.com')
+                            ->info('Sets the From address when an email is sent')
+                            ->end()
+                        ->arrayNode('contact')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('subject')
+                                    ->defaultValue('Contact Email')
+                                    ->info('Sets the Subject for a Welcome email when member is created')
+                                    ->end()
+                                ->scalarNode('to')->defaultValue('webmaster@website.com')->end()
+                                ->scalarNode('template_html')->defaultValue('ManhattanPublicBundle:Email:contact.html.twig')->end()
+                                ->scalarNode('template_txt')->defaultValue('ManhattanPublicBundle:Email:contact.txt.twig')->end()
+                                ->scalarNode('sendgrid_category')->defaultValue('Contact Email')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

@@ -4,17 +4,28 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="manhattan_public.example.class">Manhattan\PublicBundle\Example</parameter>
+        <parameter key="hordern.mailer.class">Manhattan\PublicBundle\Mailer\ContactSwiftMailer</parameter>
     </parameters>
 
     <services>
-        <service id="manhattan_public.example" class="%manhattan_public.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="manhattan.mailer" class="%hordern.mailer.class%">
+            <argument type="service" id="mailer" />
+            <argument type="service" id="twig" />
+            <argument type="collection">
+                <argument key="emails" type="collection">
+                    <argument key="from">%manhattan.emails.from%</argument>
+                    <argument key="contact" type="collection">
+                        <argument key="to">%manhattan.emails.contact.to%</argument>
+                        <argument key="subject">%manhattan.emails.contact.subject%</argument>
+                        <argument key="html_template">%manhattan.emails.contact.template_html%</argument>
+                        <argument key="txt_template">%manhattan.emails.contact.template_txt%</argument>
+                        <argument key="category">%manhattan.emails.contact.category%</argument>
+                    </argument>
+                </argument>
+            </argument>
         </service>
+
     </services>
-    -->
+
 </container>

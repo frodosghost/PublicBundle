@@ -22,7 +22,25 @@ class ManhattanPublicExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        // Configure Mailer
+        $container->setParameter('manhattan.emails.from', $config['emails']['from']);
+        $container->setParameter('manhattan.analytics.property', $config['analytics']['property']);
+
+        $this->loadContact($config, $container);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+    }
+
+    /**
+     * Loads Welcome Configuration Variables
+     */
+    private function loadContact($config, ContainerBuilder $container)
+    {
+        $container->setParameter('manhattan.emails.contact.to', $config['emails']['contact']['to']);
+        $container->setParameter('manhattan.emails.contact.subject', $config['emails']['contact']['subject']);
+        $container->setParameter('manhattan.emails.contact.template_html', $config['emails']['contact']['template_html']);
+        $container->setParameter('manhattan.emails.contact.template_txt', $config['emails']['contact']['template_txt']);
+        $container->setParameter('manhattan.emails.contact.category', $config['emails']['contact']['sendgrid_category']);
     }
 }
