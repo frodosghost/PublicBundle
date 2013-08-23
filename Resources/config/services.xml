@@ -5,11 +5,11 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="hordern.mailer.class">Manhattan\PublicBundle\Mailer\ContactSwiftMailer</parameter>
+        <parameter key="manhattan.mailer.class">Manhattan\PublicBundle\Mailer\ContactSwiftMailer</parameter>
     </parameters>
 
     <services>
-        <service id="manhattan.mailer" class="%hordern.mailer.class%">
+        <service id="manhattan.mailer" class="%manhattan.mailer.class%">
             <argument type="service" id="mailer" />
             <argument type="service" id="twig" />
             <argument type="collection">
@@ -24,6 +24,18 @@
                     </argument>
                 </argument>
             </argument>
+        </service>
+
+        <!-- Public Twig Configuration -->
+        <service id="manhattan.public.twig.extension" class="Manhattan\PublicBundle\Twig\PublicTwigExtension">
+            <argument type="service" id="twig" />
+            <argument type="service" id="doctrine" />
+            <argument type="service" id="form.factory" />
+            <argument>ManhattanPublicBundle:Public:shared.html.twig</argument>
+            <call method="setAnalyticsProperty">
+                <argument>%manhattan.analytics.property%</argument>
+            </call>
+            <tag name="twig.extension" />
         </service>
 
     </services>
