@@ -1,0 +1,22 @@
+{
+    "name": "manhattan/public-bundle",
+    "type": "symfony-bundle",
+    "description": "Bundle used to build public facing websites when using other Manhattan Bundles. Bundle is used within Symfony2.",
+    "keywords": ["contact", "mail", "pages"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Rickard",
+            "email": "james@frodosghost.com",
+            "homepage": "www.frodosghost.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Manhattan\\PublicBundle": "" }
+    },
+    "target-dir": "Manhattan/PublicBundle",
+    "require": {
+        "symfony/symfony": "2.3.*",
+        "manhattan/content-bundle": "dev-master"
+    }
+}
