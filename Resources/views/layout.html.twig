@@ -5,12 +5,13 @@
 
     {% block head_style %}
     {% stylesheets filter='less,cssembed,cssrewrite,?yui_css' output='css/screen.css'
-        '@EESPublicBundle/Resources/public/css/normalize.css'
-        '@EESPublicBundle/Resources/public/css/buttons.css'
-        '@EESPublicBundle/Resources/public/css/forms.css'
-        '@EESPublicBundle/Resources/public/css/grids.css'
-        '@EESPublicBundle/Resources/public/css/menus.css'
-        '@EESPublicBundle/Resources/public/css/tables.css'
+        '@ManhattanPublicBundle/Resources/public/css/normalize.css'
+        '@ManhattanPublicBundle/Resources/public/css/buttons.css'
+        '@ManhattanPublicBundle/Resources/public/css/forms.css'
+        '@ManhattanPublicBundle/Resources/public/css/grids.css'
+        '@ManhattanPublicBundle/Resources/public/css/menus.css'
+        '@ManhattanPublicBundle/Resources/public/css/tables.css'
+        '@ManhattanPublicBundle/Resources/public/css/temp.css'
     %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
@@ -49,7 +50,7 @@
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    {#% block analytics %} {{ analytics() }} {% endblock %#}
+    {% block analytics %} {{ analytics() }} {% endblock %}
 
 </head>
 <body>
@@ -84,7 +85,7 @@
             <div class="pure-u-2-3">
                 <div class="l-box splash-text">
                     <h1 class="splash-head">
-                        Some big bold text.
+                        {% block heading %}Some Big Bold Text{% endblock %}
                     </h1>
 
                     <h2 class="splash-subhead">
