@@ -51,5 +51,7 @@ class ManhattanPublicExtension extends Extension
         $container->setParameter('manhattan.emails.contact.template_html', $config['emails']['contact']['template_html']);
         $container->setParameter('manhattan.emails.contact.template_txt', $config['emails']['contact']['template_txt']);
         $container->setParameter('manhattan.emails.contact.category', $config['emails']['contact']['sendgrid_category']);
+
+        $container->setParameter('manhattan.contact.subjects', $config['emails']['contact']['subjects']);
     }
 }

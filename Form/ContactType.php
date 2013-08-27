@@ -39,11 +39,7 @@ class ContactType extends AbstractType
                     'class' => 'text'
                 )
             ))
-            ->add('subject', 'choice', array(
-                'choices' => array(
-                    'general' => 'General Enquiry',
-                    'support' => 'Support Request'
-                ),
+            ->add('subject', 'subject', array(
                 'attr' => array(
                     'class' => 'custom radio'
                 ),
