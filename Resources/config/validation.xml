@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Manhattan\PublicBundle\Entity\Contact">
+        <getter property="contactValid">
+            <constraint name="True">
+                <option name="message">Please provide your Email Address or Phone number</option>
+            </constraint>
+        </getter>
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">Please enter your name</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">50</option>
+                <option name="minMessage">The Title must be at least {{ limit }} character length</option>
+                <option name="maxMessage">The Title cannot be longer than than {{ limit }} characters length</option>
+            </constraint>
+        </property>
+        <property name="email">
+             <constraint name="Email">
+                <option name="message">The email "{{ value }}" is not a valid email.</option>
+                <!--option name="checkMX">true</option-->
+            </constraint>
+        </property>
+        <property name="subject">
+            <constraint name="NotBlank">
+                <option name="message">Please select a subject</option>
+            </constraint>
+        </property>
+        <property name="message">
+            <constraint name="NotBlank">
+                <option name="message">Please enter your message</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">500</option>
+                <option name="minMessage">The Message must be at least {{ limit }} character length</option>
+                <option name="maxMessage">The Message cannot be longer than than {{ limit }} characters length</option>
+            </constraint>
+        </property>
+    </class>
+
+</constraint-mapping>
