@@ -58,13 +58,13 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('template_html')->defaultValue('ManhattanPublicBundle:Email:contact.html.twig')->end()
                                 ->scalarNode('template_txt')->defaultValue('ManhattanPublicBundle:Email:contact.txt.twig')->end()
                                 ->scalarNode('sendgrid_category')->defaultValue('Contact Email')->end()
+
                                 ->arrayNode('subjects')
-                                    ->prototype('array')->end()
                                     ->defaultValue(array(
                                         'general' => 'General Enquiry',
                                         'support' => 'Support Request'
                                     ))
-                                    ->end()
+                                    ->prototype('scalar')->end()
                                 ->end()
                             ->end()
                         ->end()
