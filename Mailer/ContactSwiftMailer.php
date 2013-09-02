@@ -46,7 +46,7 @@ class ContactSwiftMailer
      * @param array $parameters
      * @param mixed $data       Data that is used within the email body
      */
-    private function sendSystemMessage($parameters, $data)
+    protected function sendSystemMessage($parameters, $data)
     {
         $message = \Swift_Message::newInstance()
             ->setSubject($parameters['subject'])
