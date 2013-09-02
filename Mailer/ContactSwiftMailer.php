@@ -73,4 +73,14 @@ class ContactSwiftMailer
         return $this->sendSystemMessage($parameters, $data);
     }
 
+    /**
+     * Return Parameters
+     *
+     * @return array
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
 }
