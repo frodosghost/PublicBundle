@@ -63,4 +63,29 @@ class PublicControllerTest extends WebTestCase
         $this->assertEquals(1, $crawler->filter('h3:contains("Thank You. An email has been sent and someone will be in contact with you shortly.")')->count(), 'Displays flash message on success page.');
     }
 
+    public function testSitemapHtml()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/sitemap');
+
+        $this->assertTrue(200 === $client->getResponse()->getStatusCode(), 'The Sitemap page displays correctly in html format.');
+    }
+
+    public function testSitemapXml()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/sitemap.xml');
+
+        $this->assertTrue(200 === $client->getResponse()->getStatusCode(), 'The Sitemap page displays correctly in xml format.');
+
+        $this->assertTrue(
+            $client->getResponse()->headers->contains(
+                'Content-Type',
+                'text/xml; charset=UTF-8'
+            )
+        );
+    }
+
 }
