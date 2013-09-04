@@ -14,6 +14,7 @@ namespace Manhattan\PublicBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use Manhattan\PublicBundle\Entity\Contact;
 use Manhattan\PublicBundle\Form\ContactType;
@@ -122,5 +123,22 @@ class PublicController extends Controller
         $response->headers->set('Content-Type', 'text/xml');
 
         return $response;
+    }
+
+    /**
+     * Sends 404 to Page AtomLogger
+     *
+     * @param  string     $message  Error Message to be Loggers
+     * @param  \Exception $previous Previous message made prior to 404
+     * @return NotFoundHttpException
+     */
+    public function createNotFoundException($message = 'Not Found', \Exception $previous = null)
+    {
+        if ($this->has('atom.404.logger')) {
+            $log = $this->get('atom.404.logger');
+            $log->addRecord(400, $message, array('request' => $this->getRequest()->getUri()));
+        }
+
+        return new NotFoundHttpException($message, $previous);
     }
 }
