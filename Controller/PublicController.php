@@ -20,7 +20,7 @@ use Manhattan\PublicBundle\Form\ContactType;
 
 class PublicController extends Controller
 {
-    public function homeAction()
+    public function homeAction(Request $request)
     {
         return $this->render('ManhattanPublicBundle:Public:home.html.twig');
     }
