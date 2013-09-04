@@ -21,4 +21,9 @@
         <default key="_controller">ManhattanPublicBundle:Public:contactSuccess</default>
     </route>
 
+    <route id="sitemap" pattern="/sitemap.{_format}">
+        <default key="_controller">ManhattanPublicBundle:Public:sitemap</default>
+        <default key="_format">html</default>
+    </route>
+
 </routes>

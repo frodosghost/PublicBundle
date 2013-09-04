@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{{ url('homepage') }}</loc>
+        <lastmod>2013-09-11</lastmod>
+        <priority>1.0</priority>
+    </url>
+    {% for node in tree %}
+<url>
+        <loc>{{ url('content_single', { slug: node.slug }) }}</loc>
+        <lastmod>{{ node.publishDate|date('Y-m-d') }}</lastmod>
+        <priority>0.7</priority>
+    </url>
+    {% if node.__children %}
+{% for child in node.__children %}
+<url>
+        <loc>{{ url('content_double', { slug_one: node.slug, slug_two: child.slug }) }}</loc>
+        <lastmod>{{ child.publishDate|date('Y-m-d') }}</lastmod>
+        <priority>0.6</priority>
+    </url>
+    {% endfor %}
+    {% endif %}
+{% endfor %}
+{% if articles|length > 0 %}
+<url>
+        <loc>{{ url('articles_list') }}</loc>
+        <lastmod>{{ articles.0.publishDate|date('Y-m-d') }}</lastmod>
+        <priority>0.7</priority>
+    </url>
+{% for article in articles %}
+    <url>
+        <loc>{{ url('article_item', { 'date': article.date, 'slug': article.slug }) }}</loc>
+        <lastmod>{{ article.publishDate|date('Y-m-d') }}</lastmod>
+        <priority>0.6</priority>
+    </url>
+{% endfor %}
+{% endif %}
+    <url>
+        <loc>{{ url('contact') }}</loc>
+        <lastmod>2013-09-11</lastmod>
+        <priority>0.7</priority>
+    </url>
+</urlset>

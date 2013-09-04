@@ -1,0 +1,15 @@
+<ul>
+    <li><a href="{{ path('homepage') }}">Home</a></li>
+{% for node in tree %}
+    {% spaceless %}
+    <li><a href="{{ path('content_single', { slug: node.slug }) }}">{{ node.title }}</a>
+        {% if node.__children %}
+        <ul>{% for child in node.__children %}
+                <li><a href="{{ path('content_double', { slug_one: node.slug, slug_two: child.slug }) }}">{{ child.title }}</a></li>
+            {% endfor %}</ul>
+        {% endif %}
+    </li>
+    {% endspaceless %}
+{% endfor %}
+    <li><a href="{{ path('contact') }}">Contact Us</a></li>
+</ul>
