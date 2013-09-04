@@ -21,16 +21,16 @@
     {% endfor %}
     {% endif %}
 {% endfor %}
-{% if articles|length > 0 %}
+{% if posts|length > 0 %}
 <url>
-        <loc>{{ url('articles_list') }}</loc>
-        <lastmod>{{ articles.0.publishDate|date('Y-m-d') }}</lastmod>
+        <loc>{{ url('posts') }}</loc>
+        <lastmod>{{ posts.0.publishDate|date('Y-m-d') }}</lastmod>
         <priority>0.7</priority>
     </url>
-{% for article in articles %}
+{% for post in posts %}
     <url>
-        <loc>{{ url('article_item', { 'date': article.date, 'slug': article.slug }) }}</loc>
-        <lastmod>{{ article.publishDate|date('Y-m-d') }}</lastmod>
+        <loc>{{ url('posts_view', { 'date': post.date, 'slug': post.slug }) }}</loc>
+        <lastmod>{{ post.publishDate|date('Y-m-d') }}</lastmod>
         <priority>0.6</priority>
     </url>
 {% endfor %}

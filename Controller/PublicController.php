@@ -12,6 +12,7 @@
 namespace Manhattan\PublicBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Manhattan\PublicBundle\Entity\Contact;
@@ -98,22 +99,23 @@ class PublicController extends Controller
         $em = $this->getDoctrine()->getManager();
         $controller = $this;
 
-        $htmlTree = $em->getRepository('ManhattanPublicBundle:Page')
+        $htmlTree = $em->getRepository('ManhattanContentBundle:Content')
             ->setPublishState($this->container->getParameter('manhattan.constant.publish'))
             ->findPublishedNodesForDisplay(array('decorate' => false));
 
-        $articles = $em->getRepository('ManhattanPublicBundle:Article\Article')->findAllArticles();
-
         if ($format == 'html') {
             return $this->render('ManhattanPublicBundle:Sitemap:sitemap.html.twig', array(
-                'tree'        => $htmlTree,
-                'articles'    => $articles,
+                'tree' => $htmlTree
             ));
         }
 
+        $posts = $em->getRepository('ManhattanPostsBundle:Post')
+            ->getQueryJoinImageAndCategory()
+            ->getResult();
+
         $xml_content = $this->renderView('ManhattanPublicBundle:Sitemap:sitemap.xml.twig', array(
-            'tree'        => $htmlTree,
-            'articles'    => $articles,
+            'tree'  => $htmlTree,
+            'posts' => $posts
         ));
 
         $response = new Response($xml_content);
