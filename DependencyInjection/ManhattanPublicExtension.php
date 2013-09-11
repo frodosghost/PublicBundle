@@ -34,6 +34,7 @@ class ManhattanPublicExtension extends Extension
         // Configure Mailer
         $container->setParameter('manhattan.emails.from', $config['emails']['from']);
         $container->setParameter('manhattan.analytics.property', $config['analytics']['property']);
+        $container->setParameter('manhattan.analytics.domain', $config['analytics']['domain']);
 
         $this->loadContact($config, $container);
 

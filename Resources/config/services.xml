@@ -32,8 +32,11 @@
             <argument type="service" id="twig" />
             <argument type="service" id="doctrine" />
             <argument>ManhattanPublicBundle:Public:shared.html.twig</argument>
-            <call method="setAnalyticsProperty">
-                <argument>%manhattan.analytics.property%</argument>
+            <call method="setAnalyticsData">
+                <argument type="collection">
+                    <argument key="property">%manhattan.analytics.property%</argument>
+                    <argument key="domain">%manhattan.analytics.domain%</argument>
+                </argument>
             </call>
             <tag name="twig.extension" />
         </service>
