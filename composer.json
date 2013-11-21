@@ -17,6 +17,6 @@
     "target-dir": "Manhattan/PublicBundle",
     "require": {
         "symfony/symfony": "2.3.*",
-        "manhattan/content-bundle": "dev-master"
+        "manhattan/content-bundle": ">=2.0"
     }
 }
