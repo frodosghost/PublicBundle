@@ -36,9 +36,7 @@ class PublicController extends Controller
     {
         $contact = new Contact;
 
-        $form = $this->createForm(new ContactType(), $contact, array(
-            'render_fieldset' => false
-        ));
+        $form = $this->createForm(new ContactType(), $contact);
 
         return $this->render('ManhattanPublicBundle:Contact:contact.html.twig', array(
             'form' => $form->createView()
@@ -49,11 +47,9 @@ class PublicController extends Controller
     {
         $contact = new Contact;
 
-        $form = $this->createForm(new ContactType(), $contact, array(
-            'render_fieldset' => false
-        ));
+        $form = $this->createForm(new ContactType(), $contact);
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $data = $form->getData();

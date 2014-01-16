@@ -76,6 +76,13 @@ class ContactType extends AbstractType
                 'label' => false,
                 'widget' => 'single_text'
             ))
+            ->add('submit', 'submit', array(
+                'label' => 'Contact Us',
+                'attr' => array(
+                    'class' => 'pure-button pure-button-primary',
+                    'formnovalidate' => 'formnovalidate'
+                )
+            ))
         ;
     }
 
