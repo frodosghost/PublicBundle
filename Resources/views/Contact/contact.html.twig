@@ -1,0 +1,8 @@
+<h1>Contact Us</h1>
+
+<form action="{{ path('contactSend') }}" method="POST" class="" {{ form_enctype(form) }} novalidate>
+    {{ form_widget(form) }}
+    <div class="form-actions">
+        <button type="submit" class="button">Contact Us</button>
+    </div>
+</form>

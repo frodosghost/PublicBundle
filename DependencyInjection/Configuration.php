@@ -38,6 +38,10 @@ class Configuration implements ConfigurationInterface
                             ->defaultValue('')
                             ->info('Set the Analytics Property')
                             ->end()
+                        ->scalarNode('domain')
+                            ->defaultValue('')
+                            ->info('Set the Analytics Domain')
+                            ->end()
                     ->end()
                 ->end()
                 ->arrayNode('emails')
@@ -58,6 +62,14 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('template_html')->defaultValue('ManhattanPublicBundle:Email:contact.html.twig')->end()
                                 ->scalarNode('template_txt')->defaultValue('ManhattanPublicBundle:Email:contact.txt.twig')->end()
                                 ->scalarNode('sendgrid_category')->defaultValue('Contact Email')->end()
+
+                                ->arrayNode('subjects')
+                                    ->defaultValue(array(
+                                        'general' => 'General Enquiry',
+                                        'support' => 'Support Request'
+                                    ))
+                                    ->prototype('scalar')->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()

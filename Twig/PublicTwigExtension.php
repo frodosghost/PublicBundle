@@ -43,9 +43,9 @@ class PublicTwigExtension extends \Twig_Extension
     private $template;
 
     /**
-     * @var string
+     * @var array
      */
-    private $analyticsProperty = null;
+    private $analyticsData = null;
 
     /**
      * @param \Twig_Environment $environment
@@ -88,29 +88,29 @@ class PublicTwigExtension extends \Twig_Extension
     public function analytics(array $options = array())
     {
         $html = $this->getTemplate()->renderBlock('analytics', array(
-            'property' => $this->getAnalyticsProperty(),
-            'options'  => $options
+            'analytics' => $this->getAnalyticsData(),
+            'options'   => $options
         ));
 
         return $html;
     }
 
     /**
-     * Sets analytics property to be rendered in view
+     * Sets analytics data to be rendered in view
      *
-     * @param String $property
+     * @param array $data
      */
-    public function setAnalyticsProperty($property)
+    public function setAnalyticsData(array $data)
     {
-        $this->analyticsProperty = $property;
+        $this->analyticsData = $data;
     }
 
     /**
-     * @return String
+     * @return array
      */
-    public function getAnalyticsProperty()
+    public function getAnalyticsData()
     {
-        return $this->analyticsProperty;
+        return $this->analyticsData;
     }
 
     /**

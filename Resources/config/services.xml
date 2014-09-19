@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="manhattan.mailer.class">Manhattan\PublicBundle\Mailer\ContactSwiftMailer</parameter>
+        <parameter key="manhattan.contact.subject.class">Manhattan\PublicBundle\Form\Type\SubjectType</parameter>
     </parameters>
 
     <services>
@@ -31,10 +32,18 @@
             <argument type="service" id="twig" />
             <argument type="service" id="doctrine" />
             <argument>ManhattanPublicBundle:Public:shared.html.twig</argument>
-            <call method="setAnalyticsProperty">
-                <argument>%manhattan.analytics.property%</argument>
+            <call method="setAnalyticsData">
+                <argument type="collection">
+                    <argument key="property">%manhattan.analytics.property%</argument>
+                    <argument key="domain">%manhattan.analytics.domain%</argument>
+                </argument>
             </call>
             <tag name="twig.extension" />
+        </service>
+
+        <service id="manhattan.form.type.subject" class="%manhattan.contact.subject.class%">
+            <argument>%manhattan.contact.subjects%</argument>
+            <tag name="form.type" alias="subject" />
         </service>
 
     </services>

@@ -11,6 +11,7 @@
         '@ManhattanPublicBundle/Resources/public/css/grids.css'
         '@ManhattanPublicBundle/Resources/public/css/menus.css'
         '@ManhattanPublicBundle/Resources/public/css/tables.css'
+        '@ManhattanPublicBundle/Resources/public/css/temp.css'
     %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
@@ -54,7 +55,7 @@
 </head>
 <body>
 
-<div class="content {% block container_role %}page{% endblock %}">
+<div class="outer content {% block container_role %}page{% endblock %}">
     {% block navigation %}
     <div class="header">
         <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal sub">
@@ -84,7 +85,7 @@
             <div class="pure-u-2-3">
                 <div class="l-box splash-text">
                     <h1 class="splash-head">
-                        Some big bold text.
+                        {% block heading %}Some Big Bold Text{% endblock %}
                     </h1>
 
                     <h2 class="splash-subhead">
